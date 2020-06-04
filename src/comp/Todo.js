@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './Todo.css';
+import List from './list.js';
 
 class Todo extends Component {
     constructor(){
@@ -12,10 +13,9 @@ class Todo extends Component {
         this.addme=this.addme.bind(this);
         this.additem=this.additem.bind(this);
         this.help=this.help.bind(this);
-         this.del=this.del.bind(this);
+        this.del=this.del.bind(this);
     
     }
-
     addme(e){
         //console.log(input);
         this.setState ({
@@ -25,16 +25,17 @@ class Todo extends Component {
     }
     additem(){
         // e.preventDefault();
+        //console.log(this.state.list);
         if(this.state.Usertext !== " "){
         const data=this.state.Usertext;
         // console.log(data);
         const items=[... this.state.list,data];
         this.setState({
             list : items,
-            Usertext:""
+            Usertext:" "
         })
         }
-        
+        console.log(this.state.list);
     }
     help(){
         //console.log(select);
@@ -65,6 +66,7 @@ class Todo extends Component {
         // console.log("i am delete",data);
         //window.location.reload();
        // this.additem(" "); 
+       this.help();
     }
     render(){
     return (
@@ -105,10 +107,12 @@ class Todo extends Component {
                             </ul>
                         </div>
                 </div>
+                {/* <List name={this.state.list}/> */}
                 <div className="card mt-5">
                     <h5 className="card-header text-center">NEED HELP?</h5>
                     <div className="card-body text-center">
-                        <button onClick={this.help} href="#" className="btn btn-primary">Help Me
+                        <button onClick={this.help} href="#" className="btn btn-primary">
+                            Help Me
                         </button>
                         <h4 className="mt-3">
                             <ul className="float-left">
